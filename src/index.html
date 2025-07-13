@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图钉</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div class="window-header">
+            <div class="title">📌 图钉</div>
+            <div class="controls">
+                <button id="minimizeBtn" class="control-btn">_</button>
+                <button id="clearBtn" class="control-btn">🗑️</button>
+                <button id="closeBtn" class="control-btn">×</button>
+            </div>
+        </div>
+        
+        <div class="canvas-container">
+            <div id="canvas" class="canvas">
+                <div class="welcome-message">
+                    <p>欢迎使用图钉！</p>
+                    <p>点击此处，然后按 <kbd>Ctrl+V</kbd> 粘贴内容</p>
+                    <p>或使用 <kbd>Ctrl+Shift+V</kbd> 全局粘贴</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span id="itemCount">内容数量: 0</span>
+            <span class="hotkeys">Ctrl+Shift+V: 粘贴 | Ctrl+Shift+T: 显示/隐藏</span>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

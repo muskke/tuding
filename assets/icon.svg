@@ -1,0 +1,28 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="128" cy="128" r="120" fill="#667eea" stroke="#4f46e5" stroke-width="4"/>
+  
+  <!-- 图钉主体 -->
+  <g transform="translate(128, 128)">
+    <!-- 图钉头部 -->
+    <circle cx="0" cy="-30" r="25" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+    
+    <!-- 图钉针 -->
+    <rect x="-2" y="-5" width="4" height="60" fill="#374151" rx="2"/>
+    
+    <!-- 图钉底部尖端 -->
+    <polygon points="-2,55 0,65 2,55" fill="#1f2937"/>
+    
+    <!-- 装饰性光点 -->
+    <circle cx="-8" cy="-35" r="3" fill="#fbbf24" opacity="0.8"/>
+    <circle cx="6" cy="-25" r="2" fill="#fbbf24" opacity="0.6"/>
+  </g>
+  
+  <!-- 装饰性元素 -->
+  <g opacity="0.3">
+    <circle cx="60" cy="60" r="4" fill="white"/>
+    <circle cx="196" cy="80" r="3" fill="white"/>
+    <circle cx="80" cy="196" r="3" fill="white"/>
+    <circle cx="200" cy="200" r="4" fill="white"/>
+  </g>
+</svg>

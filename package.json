@@ -1,0 +1,46 @@
+{
+  "name": "tuding",
+  "version": "1.0.0",
+  "description": "一个置顶的桌面画布工具，支持快速粘贴和展示各种内容",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --development",
+    "build": "electron-builder",
+    "dist": "npm run build"
+  },
+  "keywords": ["electron", "desktop", "clipboard", "canvas", "sticky"],
+  "author": "AI Assistant",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "electron-localshortcut": "^3.2.1",
+    "electron-store": "^8.1.0"
+  },
+  "build": {
+    "appId": "com.tuding.app",
+    "productName": "图钉",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    }
+  }
+}
