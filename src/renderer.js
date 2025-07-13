@@ -13,6 +13,10 @@ class TudingCanvas {
 
     initEventListeners() {
         // 窗口控制按钮
+        document.getElementById('helpBtn').addEventListener('click', () => {
+            this.showHelpDialog();
+        });
+
         document.getElementById('minimizeBtn').addEventListener('click', async () => {
             try {
                 await ipcRenderer.invoke('minimize-window');
@@ -277,6 +281,85 @@ class TudingCanvas {
                 document.removeEventListener('click', closeMenuHandler);
             });
         }, 0);
+    }
+
+    async showHelpDialog() {
+        const paths = await ipcRenderer.invoke('get-app-data-path');
+        
+        const dialog = document.createElement('div');
+        dialog.className = 'help-dialog';
+        dialog.innerHTML = `
+            <div class="help-content">
+                <h3>📌 图钉 - 帮助信息</h3>
+                <div class="help-section">
+                    <h4>快捷键</h4>
+                    <ul>
+                        <li><kbd>Ctrl+Shift+V</kbd> - 全局粘贴</li>
+                        <li><kbd>Ctrl+Shift+T</kbd> - 显示/隐藏窗口</li>
+                        <li><kbd>Ctrl+V</kbd> - 在画布内粘贴</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h4>数据存储</h4>
+                    <p>您的数据存储在：</p>
+                    <code>${paths.userData}</code>
+                    <button class="data-btn" onclick="this.showDataOptions()">数据管理</button>
+                </div>
+                <div class="help-section">
+                    <h4>版本信息</h4>
+                    <p>版本：1.0.0</p>
+                    <p>基于 Electron 开发</p>
+                </div>
+                <div class="help-actions">
+                    <button class="help-close-btn" onclick="this.parentElement.parentElement.parentElement.remove()">关闭</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(dialog);
+        
+        // 添加数据管理功能
+        dialog.querySelector('.data-btn').onclick = () => {
+            this.showDataOptions();
+        };
+    }
+
+    async showDataOptions() {
+        const dialog = document.createElement('div');
+        dialog.className = 'data-dialog';
+        dialog.innerHTML = `
+            <div class="data-content">
+                <h3>🗂️ 数据管理</h3>
+                <p>选择要执行的操作：</p>
+                <div class="data-actions">
+                    <button class="data-action-btn" data-action="clear">清空所有数据</button>
+                    <button class="data-action-btn cancel" onclick="this.parentElement.parentElement.parentElement.remove()">取消</button>
+                </div>
+                <div class="data-warning">
+                    <small>⚠️ 清空数据后无法恢复，请谨慎操作</small>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(dialog);
+        
+        dialog.addEventListener('click', async (e) => {
+            if (e.target.dataset.action === 'clear') {
+                if (confirm('确定要清空所有数据吗？此操作无法撤销！')) {
+                    const result = await ipcRenderer.invoke('clear-all-data');
+                    if (result.success) {
+                        this.canvasItems = [];
+                        this.renderCanvas();
+                        this.showWelcomeMessage();
+                        this.updateItemCount();
+                        alert('数据已清空！');
+                    } else {
+                        alert('清空失败：' + result.error);
+                    }
+                }
+                dialog.remove();
+            }
+        });
     }
 }
 

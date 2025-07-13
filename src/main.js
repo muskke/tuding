@@ -180,13 +180,62 @@ ipcMain.handle('quit-app', () => {
   app.quit();
 });
 
-app.whenReady().then(createWindow);
+ipcMain.handle('clear-all-data', () => {
+  try {
+    // 清空所有存储的数据
+    store.clear();
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+});
 
+ipcMain.handle('get-app-data-path', () => {
+  return {
+    userData: app.getPath('userData'),
+    appData: app.getPath('appData'),
+    temp: app.getPath('temp')
+  };
+});
+
+// 监听系统关闭事件
+app.on('before-quit', (event) => {
+  // 在应用退出前保存数据
+  if (mainWindow) {
+    const bounds = mainWindow.getBounds();
+    store.set('windowBounds', bounds);
+  }
+});
+
+// 处理Windows系统的关闭请求
 app.on('window-all-closed', () => {
+  // 注销全局快捷键
+  globalShortcut.unregisterAll();
+  
+  // 保存数据后退出
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
+
+// 添加进程间通信来处理外部关闭请求
+process.on('SIGTERM', () => {
+  console.log('收到SIGTERM信号，正在优雅关闭...');
+  if (mainWindow) {
+    mainWindow.close();
+  }
+  app.quit();
+});
+
+process.on('SIGINT', () => {
+  console.log('收到SIGINT信号，正在优雅关闭...');
+  if (mainWindow) {
+    mainWindow.close();
+  }
+  app.quit();
+});
+
+app.whenReady().then(createWindow);
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {

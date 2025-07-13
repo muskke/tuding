@@ -24,23 +24,49 @@
     "appId": "com.tuding.app",
     "productName": "图钉",
     "directories": {
-      "output": "dist"
+      "output": "dist",
+      "buildResources": "build"
     },
     "files": [
       "src/**/*",
+      "assets/**/*",
       "package.json"
     ],
     "win": {
-      "target": "nsis",
-      "icon": "assets/icon.ico"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "图钉",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": true,
+      "runAfterFinish": true,
+      "displayLanguageSelector": false,
+      "uninstallDisplayName": "图钉",
+      "include": "build/uninstaller.nsh",
+      "warningsAsErrors": false
     },
     "mac": {
       "target": "dmg",
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.png",
+      "category": "public.app-category.productivity"
     },
     "linux": {
       "target": "AppImage",
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.png",
+      "category": "Utility"
     }
   }
 }

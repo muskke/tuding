@@ -1,0 +1,48 @@
+MIT License
+
+Copyright (c) 2024 图钉开发团队
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+===
+
+图钉 - 桌面画布工具
+
+这是一个免费的开源软件，用于在桌面上创建置顶的画布，方便用户快速粘贴和查看各种内容。
+
+主要功能：
+- 置顶画布显示
+- 支持文本、图片、HTML内容粘贴
+- 全局快捷键操作
+- 内容持久化保存
+- 简洁的用户界面
+
+使用条款：
+1. 本软件完全免费使用
+2. 用户数据仅存储在本地，不上传到任何服务器
+3. 软件可能会在本地保存配置文件和用户数据
+4. 卸载时会清理所有相关数据（如果用户同意）
+
+技术支持：
+如果您在使用过程中遇到问题，可以通过以下方式获取帮助：
+- 查看README.md文档
+- 提交GitHub Issues
+- 联系开发团队
+
+感谢您使用图钉！
